@@ -1,6 +1,5 @@
 package com.tank.router;
 
-import com.sun.security.ntlm.Server;
 import com.tank.handler.LoginHandler;
 import com.tank.handler.PersonHandler;
 import lombok.val;
@@ -16,9 +15,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
-import org.springframework.web.reactive.function.server.RouterFunctions;
-import reactor.core.publisher.Mono;
-
 /**
  * @author fuchun
  * @date 2019-02-19
@@ -33,11 +29,10 @@ public class RouterConfiguration {
   @Bean
   public RouterFunction<ServerResponse> registerRouter() {
     val loginRouter = POST("/login").and(JSON_FORMATTER);
-    val personRouter = GET("v1/persons").and(JSON_FORMATTER);
+    val personRouter = GET("/v1/persons").and(JSON_FORMATTER);
 
-
-
-    return route(loginRouter, this.loginHandler::login).andRoute(personRouter,this.personHandler::queryAllPerson);
+    return route(loginRouter, this.loginHandler::login)
+        .andRoute(personRouter,this.personHandler::queryAllPerson);
 
   }
 
