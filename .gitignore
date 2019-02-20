@@ -1,3 +1,4 @@
 .idea/
 jwt_demo.iml
 target/
+logs/
