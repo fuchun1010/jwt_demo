@@ -4,3 +4,11 @@ server:
 
 jwt:
   secrecy: pagada
+
+mysql:
+  url: jdbc:mysql://127.0.0.1:3306/demo
+  user: test
+  password: 123
+  maxIdle: 5
+  idleTimeBeforeHealthCheck: 5
+  connectionRetryInterval: 10
