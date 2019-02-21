@@ -19,9 +19,8 @@ public class MySqlDataSourceConfig {
   @Bean("asyncMySqlDb")
   public Database initDataBase() {
     ConnectionProvider connectionProvider = new ConnectionProviderFromUrl(this.url, this.user, this.password);
-    return Database.from(connectionProvider);
+    return Database.from(connectionProvider).asynchronous();
   }
-
 
   @Value("${mysql.url}")
   private String url;
@@ -32,12 +31,4 @@ public class MySqlDataSourceConfig {
   @Value("${mysql.password}")
   private String password;
 
-  @Value("${mysql.maxIdle}")
-  private int maxIdle;
-
-  @Value("${mysql.idleTimeBeforeHealthCheck}")
-  private int idleTimeBeforeHealthCheck;
-
-  @Value("${mysql.connectionRetryInterval}")
-  private int connectionRetryInterval;
 }
