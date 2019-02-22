@@ -22,3 +22,10 @@ nohup java -Xms128m -Xmx128m -XX:+UseG1GC -XX:MaxGCPauseMillis=200  -XX:+HeapDum
 ```sbtshell
 ps ax | grep jwt_demo | grep -v grep | awk '{print $1}' | xargs kill
 ```
+
+
+## ab test
+
+```sbtshell
+ab -k -c 350 -n 20000 example.com/
+```

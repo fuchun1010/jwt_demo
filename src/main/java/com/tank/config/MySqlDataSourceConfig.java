@@ -6,8 +6,10 @@ import com.github.davidmoten.rx.jdbc.Database;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Executors;
 
 /**
  * @author tank198435163.com
@@ -30,5 +32,10 @@ public class MySqlDataSourceConfig {
 
   @Value("${mysql.password}")
   private String password;
+
+  @Bean
+  public Scheduler jdbcScheduler() {
+    return Schedulers.fromExecutor(Executors.newFixedThreadPool(12));
+  }
 
 }
